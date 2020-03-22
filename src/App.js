@@ -1,14 +1,31 @@
 import React from 'react';
 import './App.css';
+import ViewList from '@material-ui/icons/ViewList';
+import TrendingUp from '@material-ui/icons/TrendingUp';
+import Settings from '@material-ui/icons/Settings';
 
 function App() {
   return (
     <div className="App">
-        <Kulukortti />
-        <Kulukortti />
-        <Kulukortti />
+        <Header />
+
+        <div name="content">
+          <Kulukortti />
+          <Kulukortti />
+          <Kulukortti />
+        </div>
+        
+        <Menu />
     </div>
   );
+}
+
+function Header(props) {
+  return (
+    <div className="header">
+      <h1>Kulukirjanpito</h1>
+    </div>
+  )
 }
 
 function Kulukortti(props) {
@@ -28,6 +45,16 @@ function Kulukortti(props) {
       </div>
     </div>
   );
+}
+
+function Menu(props) {
+  return (
+    <div className="menu">
+      <div className="menu__nappi"><ViewList htmlColor="#fff" /></div>
+      <div className="menu__nappi"><TrendingUp  htmlColor="#fff" /></div>
+      <div className="menu__nappi"><Settings  htmlColor="#fff" /></div>
+    </div>
+  )
 }
 
 export default App;
