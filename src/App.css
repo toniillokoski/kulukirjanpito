@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,700');
+
 * {
   margin: 0;
   padding: 0;
@@ -7,13 +9,18 @@
   max-width: 30em;
   margin: 0 auto;
   height: 100vh;
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
+  font-family: 'Nunito', sans-serif;
 }
 
 .App > * {
   flex: 1 1 auto;
+}
+
+.content {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .header {
@@ -24,6 +31,7 @@
   max-height: 3em;
   min-height: 3em;
   color: #FFF;
+  align-items: center;
 }
 
 .header h1 {
@@ -40,6 +48,16 @@
   justify-content: space-between;
 }
 
+.kulukortti__tyyppi, .kulukortti__summa {
+  font-weight: bold;
+}
+
+.kulukortti__maksupaiva, .kulukortti__ajanjakso,
+.kulukortti__laskuttaja, .kulukortti__keskiarvo {
+  font-size: 85%;
+  color: #666;
+}
+
 .menu {
   background-color: #000;
   display: flex;
@@ -47,4 +65,17 @@
   max-height: 3em;
   max-height: 3em;
   align-items: center;
+}
+
+::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.0);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+
 }

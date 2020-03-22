@@ -9,12 +9,13 @@ function App() {
     <div className="App">
         <Header />
 
-        <div name="content">
+        <div className="content">
+          <Kulukortti />
           <Kulukortti />
           <Kulukortti />
           <Kulukortti />
         </div>
-        
+
         <Menu />
     </div>
   );
