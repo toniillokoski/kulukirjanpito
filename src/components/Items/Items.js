@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
 import Kulukortti from '../Kulukortti/Kulukortti';
 import Content from '../Content/Content';
 
@@ -18,7 +20,7 @@ function Items(props) {
     return (
       <Content>
         {rows}
-        <FloatingButton secondary>+</FloatingButton>
+        <Link to="/add"><FloatingButton secondary>+</FloatingButton></Link>
       </Content>
     );
   }

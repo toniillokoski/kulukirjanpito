@@ -8,6 +8,7 @@ import Items from './components/Items/Items';
 import Stats from './components/Stats/Stats';
 import Settings from './components/Settings/Settings';
 import Menu from './components/Menu/Menu';
+import AddItem from './components/AddItem/AddItem';
 
 class App extends Component {
 
@@ -26,6 +27,7 @@ class App extends Component {
           <Route path="/" exact render={() => <Items data={this.state.data} />} />
           <Route path="/stats" component={Stats} />
           <Route path="/settings" component={Settings} />
+          <Route path="/add" render={() => <AddItem />} />
           <Menu />
         </div>
       </Router>

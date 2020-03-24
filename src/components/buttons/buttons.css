@@ -35,6 +35,7 @@
 
 .button--secondary {
     background-color: #ee6c02;
+    color: #fff;
 }
 
 .button--secondary:active {
