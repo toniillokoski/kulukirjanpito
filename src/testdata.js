@@ -4,7 +4,7 @@ const testdata = [
 tyyppi: 'Sähkö',
 summa: 437.50,
 maksupaiva: '2020-03-20',
-kaudenalku: '2020-12-01',
+kaudenalku: '2020-01-12',
 kaudenloppu: '2020-02-28',
 saaja: 'Fortum' },
 
