@@ -1,13 +1,24 @@
 import React from 'react';
 
 import Content from '../Content/Content';
+import ItemForm from '../ItemForm/ItemForm';
+
+import './AddItem.css'
 
 function AddItem(props) {
-    return (
-      <Content>
-        <h2>Add new item</h2>
-      </Content>
-    );
-  }
+  return (
+    <Content>
+
+      <div className="additem">
+
+      <h2>Uuden kulun lisääminen</h2>
+
+      <ItemForm onFormSubmit={props.onFormSubmit} />
+
+      </div>
+
+    </Content>
+  );
+}
 
 export default AddItem;

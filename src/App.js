@@ -17,6 +17,15 @@ class App extends Component {
     this.state = {
       data: testdata
     }
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+  }
+
+  handleFormSubmit(newdata) {
+    let storeddata = this.state.data.slice();
+    storeddata.push(newdata);
+    this.setState({
+      data: storeddata
+    });
   }
 
   render() {
@@ -27,7 +36,7 @@ class App extends Component {
           <Route path="/" exact render={() => <Items data={this.state.data} />} />
           <Route path="/stats" component={Stats} />
           <Route path="/settings" component={Settings} />
-          <Route path="/add" render={() => <AddItem />} />
+          <Route path="/add" render={() => <AddItem onFormSubmit={this.handleFormSubmit} />} />
           <Menu />
         </div>
       </Router>
