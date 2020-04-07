@@ -23,6 +23,11 @@ class App extends Component {
   handleFormSubmit(newdata) {
     let storeddata = this.state.data.slice();
     storeddata.push(newdata);
+    storeddata.sort((a,b) => { 
+      const aDate = new Date(a.maksupaiva);
+      const bDate = new Date(b.maksupaiva);
+      return aDate.getTime() - bDate.getTime();
+     } );
     this.setState({
       data: storeddata
     });
