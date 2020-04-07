@@ -12,7 +12,7 @@ function Items(props) {
 
     let rows = props.data.map(invoice => {
         return (
-          <Kulukortti data={invoice} />
+          <Kulukortti data={invoice} key={invoice.id} />
         )
       }
     );

@@ -1,6 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router';
+import { v4 as uuidv4 } from 'uuid';
+
 import Button from '../buttons';
+
 import './ItemForm.css';
 
 class ItemForm extends React.Component {
@@ -12,9 +15,9 @@ class ItemForm extends React.Component {
             { 
             tyyppi: "Vesi",
             summa: 0,
-            maksupaiva: undefined,
-            kaudenalku: undefined,
-            kaudenloppu: undefined,
+            maksupaiva: "",
+            kaudenalku: "",
+            kaudenloppu: "",
             saaja: ""
             }
         };
@@ -46,6 +49,7 @@ class ItemForm extends React.Component {
         console.log("lähetä lomake");
         let data = Object.assign({}, this.state.data)
         data.summa = parseFloat(data.summa);
+        data.id = uuidv4();
         this.props.onFormSubmit(data);
         this.props.history.push("/");
         }
@@ -58,7 +62,7 @@ class ItemForm extends React.Component {
 
           <div className="itemform__row">
             <div>
-              <label for="name">Kulutyyppi</label>
+              <label htmlFor="name">Kulutyyppi</label>
               <select name="tyyppi" value={this.state.data.tyyppi} onChange={this.handleInputChange}>
                   <option value="Puhelin">Puhelin</option>
                   <option value="Sähkö">Sähkö</option>
@@ -70,31 +74,31 @@ class ItemForm extends React.Component {
 
           <div className="itemform__row">
             <div>
-              <label for="summa">Summa</label>
+              <label htmlFor="summa">Summa</label>
               <input type="number" name="summa" step="0.01" value={this.state.data.summa} onChange={this.handleInputChange} />
             </div>
       
             <div>
-              <label for="maksupaiva">Maksupäivä</label>
+              <label htmlFor="maksupaiva">Maksupäivä</label>
               <input type="date" name="maksupaiva" value={this.state.data.maksupaiva} onChange={this.handleInputChange} />
             </div>
           </div>
 
           <div className="itemform__row">
             <div>
-              <label for="kaudenalku">Laskutuskauden alku</label>
+              <label htmlFor="kaudenalku">Laskutuskauden alku</label>
               <input type="date" name="kaudenalku" size="10" value={this.state.data.kaudenalku} onChange={this.handleInputChange} />
             </div>
 
             <div>
-              <label for="kaudenloppu">Laskutuskauden loppu</label>
+              <label htmlFor="kaudenloppu">Laskutuskauden loppu</label>
               <input type="date" name="kaudenloppu" size="10" value={this.state.data.kaudenloppu} onChange={this.handleInputChange} />
             </div>
           </div>
 
           <div className="itemform__row">
             <div>
-              <label for="saaja">Laskuttaja</label>
+              <label htmlFor="saaja">Laskuttaja</label>
               <input type="text" name="saaja" value={this.state.data.saaja} onChange={this.handleInputChange} />
             </div>
           </div>
