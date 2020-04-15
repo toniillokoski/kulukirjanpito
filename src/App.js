@@ -9,6 +9,7 @@ import Stats from './components/Stats/Stats';
 import Settings from './components/Settings/Settings';
 import Menu from './components/Menu/Menu';
 import AddItem from './components/AddItem/AddItem';
+import EditItem from './components/EditItem/EditItem';
 
 class App extends Component {
 
@@ -24,6 +25,12 @@ class App extends Component {
 
   handleFormSubmit(newdata) {
     let storeddata = this.state.data.slice();
+    const index = storeddata.findIndex(item => item.id === newdata.id);
+    if (index >= 0) {
+      storeddata[index] = newdata;
+    } else {
+      storeddata.push(newdata);
+    }
     storeddata.push(newdata);
     storeddata.sort((a,b) => { 
       const aDate = new Date(a.maksupaiva);
@@ -53,6 +60,10 @@ class App extends Component {
           <Route path="/stats" component={Stats} />
           <Route path="/settings" render={() => <Settings selectList={this.state.selectList} onFormSubmit={this.handleSelectListForm} /> } />
           <Route path="/add" render={() => <AddItem onFormSubmit={this.handleFormSubmit} selectList={this.state.selectList} />} />
+          <Route path="/edit/:id" render={(props) => <EditItem data={this.state.data} 
+                                                               selectList={this.state.selectList}
+                                                               onFormSubmit={this.handleFormSubmit} 
+                                                               {...props} />} />
           <Menu />
         </div>
       </Router>
