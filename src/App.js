@@ -15,9 +15,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: testdata
+      data: testdata,
+      selectList: ["Puhelin", "Sähkö", "Vero", "Vesi"]
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleSelectListForm = this.handleSelectListForm.bind(this);
   }
 
   handleFormSubmit(newdata) {
@@ -33,6 +35,15 @@ class App extends Component {
     });
   }
 
+  handleSelectListForm(newitem) {
+    let selectList = this.state.selectList.slice();
+    selectList.push(newitem);
+    selectList.sort();
+    this.setState({
+      selectList: selectList
+    });
+  }
+
   render() {
     return (
       <Router>
@@ -40,8 +51,8 @@ class App extends Component {
           <Header />
           <Route path="/" exact render={() => <Items data={this.state.data} />} />
           <Route path="/stats" component={Stats} />
-          <Route path="/settings" component={Settings} />
-          <Route path="/add" render={() => <AddItem onFormSubmit={this.handleFormSubmit} />} />
+          <Route path="/settings" render={() => <Settings selectList={this.state.selectList} onFormSubmit={this.handleSelectListForm} /> } />
+          <Route path="/add" render={() => <AddItem onFormSubmit={this.handleFormSubmit} selectList={this.state.selectList} />} />
           <Menu />
         </div>
       </Router>

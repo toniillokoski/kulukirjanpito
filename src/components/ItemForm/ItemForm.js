@@ -64,10 +64,9 @@ class ItemForm extends React.Component {
             <div>
               <label htmlFor="name">Kulutyyppi</label>
               <select name="tyyppi" value={this.state.data.tyyppi} onChange={this.handleInputChange}>
-                  <option value="Puhelin">Puhelin</option>
-                  <option value="Sähkö">Sähkö</option>
-                  <option value="Vero">Vero</option>
-                  <option value="Vesi">Vesi</option>
+
+               {this.props.selectList.map(item => <option value={item} key={item}>{item}</option>)}
+
               </select>
             </div>
           </div>
