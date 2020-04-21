@@ -17,7 +17,7 @@ class App extends Component {
     super(props);
     this.state = {
       data: testdata,
-      selectList: ["Puhelin", "Sähkö", "Vero", "Vesi"]
+      selectList: ["Puhelin", "Sähkö", "Vero", "Vesi", "Auto"]
     }
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleSelectListForm = this.handleSelectListForm.bind(this);
@@ -32,7 +32,6 @@ class App extends Component {
     } else {
       storeddata.push(newdata);
     }
-    storeddata.push(newdata);
     storeddata.sort((a,b) => { 
       const aDate = new Date(a.maksupaiva);
       const bDate = new Date(b.maksupaiva);
