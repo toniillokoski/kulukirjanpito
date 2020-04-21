@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import testdata from './testdata';
+import firebase from './Firebase';
 
 import Header from './components/Header/Header';
 import Items from './components/Items/Items';
@@ -16,15 +17,31 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: testdata,
+      data: [],
       selectList: ["Puhelin", "Sähkö", "Vero", "Vesi", "Auto"]
     }
+    this.dbRef = firebase.firestore();
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleSelectListForm = this.handleSelectListForm.bind(this);
     this.handleDeleteItem = this.handleDeleteItem.bind(this);
   }
 
+  componentDidMount() {
+    this.refData = this.dbRef.collection('Data');
+    this.refData.orderBy("maskupaiva").onSnapshot((docs) => {
+      let data = [];
+      docs.forEach((doc) => {
+        let docdata = doc.data();
+        data.push(docdata);
+      });
+      this.setState({
+        data: data
+      });
+    });
+  }
+
   handleFormSubmit(newdata) {
+    /*
     let storeddata = this.state.data.slice();
     const index = storeddata.findIndex(item => item.id === newdata.id);
     if (index >= 0) {
@@ -39,7 +56,8 @@ class App extends Component {
      } );
     this.setState({
       data: storeddata
-    });
+    }); */
+    this.refData.doc(newdata.id).set(newdata);
   }
 
   handleSelectListForm(newitem) {
@@ -52,11 +70,12 @@ class App extends Component {
   }
 
   handleDeleteItem(id) {
-    let storeddata = this.state.data.slice();
+    /* let storeddata = this.state.data.slice();
     storeddata = storeddata.filter(item => item.id !== id);
     this.setState({
       data: storeddata
-    });
+    }); */
+    this.refData.doc(id).delete().then().catch(error => {console.error("Virhe tietoa poistettaessa: ", error)});
   }
 
   render() {
