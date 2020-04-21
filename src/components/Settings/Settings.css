@@ -36,3 +36,20 @@
     outline: none;
 }
 
+.settings__profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.settings__userdata {
+    display: flex;
+    align-items: center;
+}
+
+.settings__userdata img {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    margin: 0.5em;
+}
