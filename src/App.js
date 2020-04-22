@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
-/* import testdata from './testdata'; */
 import firebase, { provider, auth } from './Firebase';
 
 import Header from './components/Header/Header';
@@ -39,8 +38,8 @@ class App extends Component {
         this.setState({
           user: user
         });
-        this.refData = this.dbRef.collection("users").doc(user.uid).collection('Data');
-        this.refData.orderBy("maskupaiva").onSnapshot((docs) => {
+        this.refData = this.dbRef.collection("users").doc(user.uid).collection('data');
+        this.refData.orderBy("maksupaiva","desc").onSnapshot((docs) => {
         let data = [];
         docs.forEach((doc) => {
           let docdata = doc.data();
@@ -146,7 +145,10 @@ class App extends Component {
                                                           onFormSubmit={this.handleSelectListForm} 
                                                           onLogout={this.logout}
                                                           user={this.state.user} /> } />
-          <Route path="/add" render={() => <AddItem onFormSubmit={this.handleFormSubmit} selectList={this.state.selectList} />} />
+
+          <Route path="/add" render={() => <AddItem onFormSubmit={this.handleFormSubmit}
+                                                    selectList={this.state.selectList} />} />
+
           <Route path="/edit/:id" render={(props) => <EditItem data={this.state.data} 
                                                                selectList={this.state.selectList}
                                                                onFormSubmit={this.handleFormSubmit} 
