@@ -56,8 +56,7 @@ function Stats(props) {
             type: "time",
             time: {
               displayFormats: {
-                day: 'D.M.Y',
-                month: 'M.Y'
+                day: 'D.M.'
               }
             }
           }
